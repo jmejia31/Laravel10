@@ -40,3 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    //Route::get('permissions', ['as' => 'permissions.edit', 'uses' => 'App\Http\Controllers\PermissionController@edit']);
+
+
+});
+
