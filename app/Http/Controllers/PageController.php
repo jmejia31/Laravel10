@@ -13,7 +13,6 @@ class PageController extends Controller
     {
         return view('pages.icons');
     }
-
     /**
      * Display maps page
      *

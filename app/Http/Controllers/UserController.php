@@ -18,4 +18,13 @@ class UserController extends Controller
     {
         return view('users.index', ['users' => $model->paginate(15)]);
     }
+
+    // FUNTION INDEX
+    // public function index()
+    // {
+    //     $users = User::with('roles')->get();
+    //     return view('roles-permisos.user.index',[
+    //         'users' => $users
+    //     ]);
+    // }
 }

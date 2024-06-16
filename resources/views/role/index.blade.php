@@ -8,7 +8,7 @@
             @endif
             <div class="card ">
                 <div class="card-header">
-                    <h4 class="card-title">Permissions</h4>
+                    <h4 class="card-title">roles</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -21,13 +21,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($permissions as $permission)
+                                @foreach ($roles as $role)
                                 <tr>
-                                    <td class="text-center">{{ $permission->id}}</td>
-                                    <td class="text-center">{{ $permission->name }}</td>
+                                    <td class="text-center">{{ $role->id}}</td>
+                                    <td class="text-center">{{ $role->name }}</td>
                                     <td class="text-center">
-                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-fill btn-primary" >Edit</a>
-                                        <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-fill btn-primary">Delete</a>
+                                        <a href="{{ url('role/'.$role->id.'/give-permissions') }}" class="btn btn-fill btn-primary" >
+                                            Add / Edit Role Permission
+                                        </a>
+                                        <a href="{{ url('role/'.$role->id.'/edit') }}" class="btn btn-fill btn-primary" >Edit</a>
+                                        <a href="{{ url('role/'.$role->id.'/delete') }}" class="btn btn-fill btn-primary">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

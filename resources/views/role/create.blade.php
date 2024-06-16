@@ -5,8 +5,8 @@
         <div class="col-lg-12 col-md-12">
             <div class="card ">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Edit Permission</h4>
-                    <a href="{{ url('permissions/') }}" class="btn btn-danger">Back</a>
+                    <h4 class="card-title mb-0">Create role</h4>
+                    <a href="{{ url('role') }}" class="btn btn-fill btn-primary">Back</a>
                 </div>
 
                 <!-- Muestra los errores de validación -->
@@ -19,22 +19,20 @@
                     </ul>
                 </div>
                 @endif
-
-                <form method="post" action="{{ url('permissions/'.$permission->id) }}" autocomplete="off">
+                <form method="post" action="{{ route('role.store') }}" autocomplete="off">
                     <div class="card-body">
                             @csrf
-                            @method('put')
 
                             @include('alerts.success')
 
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <label>{{ _('Name') }}</label>
-                                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ _('Name') }}" value="{{ old('name', $permission->name) }}">
+                                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ _('Name') }}" value="{{ old('name') }}">
                                 @include('alerts.feedback', ['field' => 'name'])
                             </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ _('Update') }}</button>
+                        <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>
                     </div>
                 </form>
             </div>
@@ -50,5 +48,3 @@
         });
     </script>
 @endpush
-
-
