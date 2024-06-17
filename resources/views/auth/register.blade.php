@@ -56,6 +56,18 @@
                             <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ _('Name') }}" value="{{ old('name') }}">
                             @include('alerts.feedback', ['field' => 'name'])
                         </div>
+                        {{--  ========================Campo nuevo  --}}
+                        <div class="input-group{{ $errors->has('last_name') ? ' has-danger' : '' }}">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="tim-icons icon-single-02"></i>
+                                </div>
+                            </div>
+                            <input type="text" name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" placeholder="{{ _('last name') }}" value="{{ old('last_name') }}">
+                            @include('alerts.feedback', ['field' => 'last_name'])
+                        </div>
+
+                        {{--  hasta aqui   --}}
                         <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">

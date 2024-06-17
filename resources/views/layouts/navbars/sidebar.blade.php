@@ -11,10 +11,7 @@
                     <p>{{ _('Dashboard') }}</p>
                 </a>
             </li>
-
-
             {{--  MODULO DE PERSONAS  --}}
-
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
@@ -35,12 +32,12 @@
                                 <p>{{ _('View Users') }}</p>
                             </a>
                         </li>
-                        {{--  <li @if ($pageSlug == 'users') class="active " @endif>
-                            <a href="{{ route('users.index')  }}">
+                        <li @if ($pageSlug == 'users') class="active " @endif>
+                            <a href="{{ route('users.create')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('User Management') }}</p>
+                                <p>{{ _('Users Create') }}</p>
                             </a>
-                        </li>  --}}
+                        </li>
                     </ul>
                 </div>
             </li>
