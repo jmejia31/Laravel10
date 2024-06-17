@@ -28,9 +28,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
 });
 
+
+// MODULO DE USERS AND PROFILE
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('user', UserController::class);
-	//Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+    Route::resource('users', UserController::class);
+    // ruta simple y corta correcta
+    Route::get('users/view', [UserController::class, 'show'])->name('users.view');
+
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

@@ -15,30 +15,35 @@
 
             {{--  MODULO DE PERSONAS  --}}
 
-
-            {{--  <li>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="{{ (request()->is('role/*') || request()->is('permissions/*')) ? 'true' : 'false' }}">
-                    <i class="fab fa-laravel"></i>
-                    <span class="nav-link-text">{{ __('PERSONAS') }}</span>
+            <li>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fab fa-laravel" ></i>
+                    <span class="nav-link-text" >{{ __('people') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse {{ (request()->is('role/*') || request()->is('permissions/*')) ? 'show' : '' }}" id="laravel-examples">
+                <div class="collapse show" id="laravel-examples">
                     <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'role') class="active " @endif>
-                            <a href="{{ route('role.index') }}">
+                        {{--  <li @if ($pageSlug == 'profile') class="active " @endif>
+                            <a href="{{ route('profile.edit')  }}">
                                 <i class="tim-icons icon-single-02"></i>
-                                <p>{{ _('Ver Usuarios') }}</p>
+                                <p>{{ _('User Profile') }}</p>
                             </a>
-                        </li>
-                        <li @if ($pageSlug == 'permissions') class="active " @endif>
-                            <a href="{{ route('permissions.index') }}">
+                        </li>  --}}
+                        <li @if ($pageSlug == 'users') class="active " @endif>
+                            <a href="{{ route('users.view')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('Crear Usuarios') }}</p>
+                                <p>{{ _('View Users') }}</p>
                             </a>
                         </li>
+                        {{--  <li @if ($pageSlug == 'users') class="active " @endif>
+                            <a href="{{ route('users.index')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>{{ _('User Management') }}</p>
+                            </a>
+                        </li>  --}}
                     </ul>
                 </div>
-            </li>  --}}
+            </li>
 
             {{--  Modulo de ROLES Y PERMISSIONS  --}}
 
@@ -105,31 +110,6 @@
                 </div>
             </li>
 
-            {{--  ESTE ES EL MODULO DE USERS  --}}
-
-            {{--  <li>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
-                    <i class="fab fa-laravel" ></i>
-                    <span class="nav-link-text" >{{ __('Users') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse show" id="laravel-examples">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'profile') class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{ _('User Profile') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug == 'users') class="active " @endif>
-                            <a href="{{ route('user.index')  }}">
-                                <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('User Management') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>  --}}
             {{--  <li @if ($pageSlug == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">
                     <i class="tim-icons icon-atom"></i>
