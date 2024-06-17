@@ -69,7 +69,6 @@
                                 </div>
                                 <input type="password" name="password_confirmation" class="form-control" placeholder="{{ _('Confirm Password') }}">
                             </div>
-
                             {{--  Campo de ROLES  --}}
                             <div class="input-group{{ $errors->has('role') ? ' has-danger' : '' }}">
                                 <div class="input-group-prepend">
@@ -77,16 +76,23 @@
                                         <i class="tim-icons icon-single-02"></i>
                                     </div>
                                 </div>
+                                {{-- Boton de SELECCION MULTIPLE
+
                                 <select name="roles[]" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" multiple>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role }}" {{ old('roles') && in_array($role, old('roles')) ? 'selected' : '' }}>{{ $role }}</option>
                                     @endforeach
+                                </select>  --}}
+                                {{--  BOTON DE SELECCION UNICA  --}}
+                                <select name="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}">
+                                    <option value="" disabled selected>Seleccione un rol</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role }}" {{ old('role') && old('role') == $role ? 'selected' : '' }}>{{ $role }}</option>
+                                    @endforeach
                                 </select>
                                 @include('alerts.feedback', ['field' => 'role'])
                             </div>
-
                             {{--  HASTA AQUI  --}}
-                            
                             <div class="form-check text-left {{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <label class="form-check-label">
                                     <input class="form-check-input {{ $errors->has('agree_terms_and_conditions') ? ' is-invalid' : '' }}" name="agree_terms_and_conditions"  type="checkbox"  {{ old('agree_terms_and_conditions') ? 'checked' : '' }}>

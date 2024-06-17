@@ -50,8 +50,11 @@ class UserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'max:20'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['required', 'string', 'exists:roles,name'],
+            // esta funcion es para SELECCION DE ROLES UNICA
+            'role' => ['required', 'string', 'exists:roles,name'],
+            // Esta funcion es para una SELECCION MULTIPLE DE ROLES
+            // 'roles' => ['required', 'array'],
+            // 'roles.*' => ['required', 'string', 'exists:roles,name'],
             ]);
             $user = User::create([
                 'name' => $request->name,
@@ -59,9 +62,11 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
+            // esta funcion es para SELECCION DE ROLES UNICA
+            $user->syncRoles([$request->role]);
 
-            $user->syncRoles($request->roles);
-
+            // Esta funcion es para una SELECCION MULTIPLE DE ROLES
+            // $user->syncRoles($request->roles);
             return redirect('/users')->with('status', 'User Created Successfully with roles');
         }
 }
