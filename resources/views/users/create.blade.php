@@ -77,7 +77,6 @@
                                     </div>
                                 </div>
                                 {{-- Boton de SELECCION MULTIPLE
-
                                 <select name="roles[]" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" multiple>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role }}" {{ old('roles') && in_array($role, old('roles')) ? 'selected' : '' }}>{{ $role }}</option>
