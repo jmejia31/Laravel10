@@ -38,6 +38,12 @@
                                 <p>{{ _('Users Create') }}</p>
                             </a>
                         </li>
+                        <li @if ($pageSlug == 'users') class="active " @endif>
+                            <a href="{{ route('users.index')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>{{ _('Index ') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

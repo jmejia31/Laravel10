@@ -16,16 +16,29 @@
                             <thead class=" text-primary">
                                 <tr>
                                     <th class="text-center">Id</th>
+                                    <th class="text-center">Role</th>
                                     <th class="text-center">Name</th>
+                                    <th class="text-center">last Name</th>
                                     <th class="text-center">Email</th>
+                                    <th class="text-center">State</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
                                 <tr>
                                     <td class="text-center">{{ $user->id}}</td>
+                                    <td class="text-center">
+                                        @if(!empty($user->getRoleNames()))
+                                            @foreach ($user->getRoleNames() as $rolename)
+                                                {{--  ESTO ES PARA PONERLE COLOR class="badge bg-primary mx-1"  --}}
+                                                <strong>{{ $rolename }}</strong>
+                                            @endforeach
+                                        @endif
+                                    </td>
                                     <td class="text-center">{{ $user->name }}</td>
+                                    <td class="text-center">{{ $user->last_name }}</td>
                                     <td class="text-center">{{ $user->email }}</td>
+                                    <td class="text-center">{{ $user->state }}</td>
                                     <td class="text-center">
                                         {{--  <a href="{{ url('users/'.$user->id.'/give-permissions') }}" class="btn btn-fill btn-primary" >
                                             Add / Edit Role Permission

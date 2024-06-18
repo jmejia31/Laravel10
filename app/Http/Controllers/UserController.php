@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
         return view('users.index',[
             'users' => $users
         ]);
@@ -21,10 +21,9 @@ class UserController extends Controller
 
     public function show()
     {
-        $users = User::all();
-        return view('users.view',[
-            'users' => $users
-        ]);
+        $users = User::with('roles')->get();
+        return view('users.view', compact('users'));
+
     }
 
     public function create()
