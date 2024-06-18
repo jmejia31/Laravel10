@@ -92,6 +92,22 @@
                                 @include('alerts.feedback', ['field' => 'role'])
                             </div>
                             {{--  HASTA AQUI  --}}
+                            {{--  Añade esta línea para establecer el estado por defecto a activo  --}}
+                            
+
+                            {{--  <div class="input-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tim-icons icon-shape-star"></i> <!-- Cambia el ícono según necesites -->
+                                    </div>
+                                </div>
+                                <select name="state" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" onchange="this.form.submit()">
+                                    <option value="" disabled>Estado del usuario</option>
+                                    <option value="Activo" {{ $user->state == 'Activo' ? 'selected' : '' }}>Activar</option>
+                                    <option value="Inactivo" {{ $user->state == 'Inactivo' ? 'selected' : '' }}>Inactivar</option>
+                                </select>
+                                @include('alerts.feedback', ['field' => 'state'])
+                            </div>  --}}
                             <div class="form-check text-left {{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <label class="form-check-label">
                                     <input class="form-check-input {{ $errors->has('agree_terms_and_conditions') ? ' is-invalid' : '' }}" name="agree_terms_and_conditions"  type="checkbox"  {{ old('agree_terms_and_conditions') ? 'checked' : '' }}>

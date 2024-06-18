@@ -27,19 +27,13 @@ class UserController extends Controller
         ]);
     }
 
-    // public function index()
-    // {
-    //     $users = User::with('roles')->get();
-    //     return view('roles-permisos.user.index',[
-    //         'users' => $users
-    //     ]);
-    // }
-
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
+        $user = new User; // Crea una nueva instancia de User
         return view('users.create', [
-            'roles' => $roles
+            'roles' => $roles,
+            'user' => $user // Pasa la instancia a la vista
         ]);
     }
 
@@ -69,4 +63,13 @@ class UserController extends Controller
             // $user->syncRoles($request->roles);
             return redirect('/users')->with('status', 'User Created Successfully with roles');
         }
+
+    // En tu UserController ESTADO ACTIVO E INACTIVO
+    // Añade esta FUNVION para establecer el estado por defecto a activo
+    public function toggleUserStatus(User $user)
+    {
+        $user->state = !$user->state;
+        $user->save();
+        return back()->with('status', 'User status updated successfully');
+    }
 }
