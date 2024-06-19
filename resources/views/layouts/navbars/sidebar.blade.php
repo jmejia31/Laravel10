@@ -98,9 +98,9 @@
                                 <ul class="nav pl-4">
                                     <!-- Elemento de "Permissions" -->
                                     <li @if ($pageSlug == 'permission') class="active " @endif>
-                                        <a href="{{ route('permissions.index') }}">
+                                        <a href="{{ route('permissions.view') }}">
                                             <i class="tim-icons icon-single-02"></i>
-                                            <p>{{ _('Permission Manager') }}</p>
+                                            <p>{{ _('Permission View') }}</p>
                                         </a>
                                     </li>
                                     <li @if ($pageSlug == 'permission') class="active " @endif>
@@ -109,7 +109,12 @@
                                             <p>{{ _('Permission Create') }}</p>
                                         </a>
                                     </li>
-                                    <!-- Agrega más elementos de "Permissions" aquí si es necesario -->
+                                    <li @if ($pageSlug == 'permission') class="active " @endif>
+                                        <a href="{{ route('permissions.index') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Permission Manager') }}</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

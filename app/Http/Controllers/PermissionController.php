@@ -16,6 +16,12 @@ class PermissionController extends Controller
         ]);
     }
 
+    public function show()
+    {
+        $permissions = Permission::all();
+        return view('permissions.view', compact('permissions'));
+    }
+
     public function create()
     {
         return view('permissions.create');
@@ -35,11 +41,6 @@ class PermissionController extends Controller
         ]);
 
         return redirect('permissions/create')->with('status', 'Permission Created Successfully');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit(Permission $permission)

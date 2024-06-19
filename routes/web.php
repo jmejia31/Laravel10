@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 //ESTAS SON LAS RUTAS DE PERMISSIONS
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    Route::get('permissions/view', [PermissionController::class, 'show'])->name('permissions.view');
     Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
 
     //SEGUNDA FORMA DE CREAR RUTAS RESOURCES Y SIMPLES mas cortos
