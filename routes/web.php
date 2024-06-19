@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/view', [UserController::class, 'show'])->name('users.view');
     // Ruta para mostrar el formulario de edición de un usuario específico
     Route::put('user/{user}', [UserController::class, 'update'])->name('user.update');
+    // Ruta para la eliminacion de un usuario específico
+    Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+
 
 
     //Route::get('perfil', ['as' => 'profile.index', 'uses' => 'App\Http\Controllers\ProfileController@index']);

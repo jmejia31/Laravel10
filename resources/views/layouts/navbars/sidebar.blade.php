@@ -35,7 +35,7 @@
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('users.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('manage Users or user management') }}</p>
+                                <p>{{ _('User Manager') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -70,6 +70,7 @@
 
             <!-- MODULO DE MANTENIMIENTOS -->
 
+            {{--  ADMIN ROLES  --}}
             <li>
                 <a data-toggle="collapse" href="#mantenimientos" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
                     <i class="fab fa-laravel"></i>
@@ -98,6 +99,31 @@
                                         <a href="{{ route('role.index') }}">
                                             <i class="tim-icons icon-bullet-list-67"></i>
                                             <p>{{ _('Edit Role') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Aquí es donde agregas tu subcategoría -->
+                        <li>
+                            <a data-toggle="collapse" href="#subcategoria" aria-expanded="{{ (request()->is('permission/*')) ? 'true' : 'false' }}">
+                                <i class="fab fa-laravel"></i>
+                                <span class="nav-link-text">{{ __('Permissions') }}</span>
+                                <b class="caret mt-1"></b>
+                            </a>
+                            <div class="collapse {{ (request()->is('permission/*')) ? 'show' : '' }}" id="subcategoria">
+                                <ul class="nav pl-4">
+                                    <!-- Aquí es donde agregas tus elementos -->
+                                    <li @if ($pageSlug == 'permission') class="active " @endif>
+                                        <a href="{{ route('permissions.create') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Create Permission') }}</p>
+                                        </a>
+                                    </li>
+                                    <li @if ($pageSlug == 'permission') class="active " @endif>
+                                        <a href="{{ route('permissions.index') }}">
+                                            <i class="tim-icons icon-bullet-list-67"></i>
+                                            <p>{{ _('Permissions Manager') }}</p>
                                         </a>
                                     </li>
                                 </ul>

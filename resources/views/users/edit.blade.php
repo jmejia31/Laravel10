@@ -74,19 +74,19 @@
                             </div>
                             {{--  Añade esta línea para establecer el estado por defecto a activo  --}}
 
-                            {{--  <div class="input-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                            <div class="input-group{{ $errors->has('state') ? ' has-danger' : '' }}">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="tim-icons icon-shape-star"></i> <!-- Cambia el ícono según necesites -->
                                     </div>
                                 </div>
-                                <select name="state" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" onchange="this.form.submit()">
+                                <select name="state" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}">
                                     <option value="" disabled>Estado del usuario</option>
-                                    <option value="Activo" {{ $user->state == 'Activo' ? 'selected' : '' }}>Activar</option>
-                                    <option value="Inactivo" {{ $user->state == 'Inactivo' ? 'selected' : '' }}>Inactivar</option>
+                                    <option value="Activo" {{ old('state', $user->state) == 'Activo' ? 'selected' : '' }}>Activar</option>
+                                    <option value="Inactivo" {{ old('state', $user->state) == 'Inactivo' ? 'selected' : '' }}>Inactivar</option>
                                 </select>
                                 @include('alerts.feedback', ['field' => 'state'])
-                            </div>  --}}
+                            </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ _('Update') }}</button>

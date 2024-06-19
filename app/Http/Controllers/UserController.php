@@ -60,7 +60,8 @@ class UserController extends Controller
 
             // Esta funcion es para una SELECCION MULTIPLE DE ROLES
             // $user->syncRoles($request->roles);
-            return redirect('/users')->with('status', 'User Created Successfully with roles');
+            // return redirect('/users')->with('status', 'User Created Successfully with roles');
+            return redirect()->route('users.view')->with('status', 'User Created Successfully with roles');
         }
 
     // En tu UserController ESTADO ACTIVO E INACTIVO
@@ -89,22 +90,30 @@ class UserController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'role' => 'required|string|exists:roles,name', // Asegúrate de que el rol exista
+            'state' => 'required|string|in:Activo,Inactivo', // Asegúrate de que el estado sea válido
         ]);
-
         // Actualizar el usuario con los nuevos datos
         $user->update([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
+            'state' => $request->state, // Agregar esta línea para actualizar el estado
         ]);
-
-        // Actualizar el rol del usuario
+        // Actualizar el rol del usuario si es necesario
         if ($request->role !== $user->getRoleNames()->first()) {
             $user->syncRoles($request->role);
         }
-
         // Redirigir al usuario con un mensaje de éxito
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+        return redirect()->route('users.edit', ['user' => $user->id])->with('status', 'User Updated Successfully');
+
     }
 
+    public function destroy($userId)
+    {
+        //dd($id);
+        $user = User::find($userId);
+        $user->delete();
+        return redirect()->route('users.index')->with('status', 'User Deleted Successfully');
+
+    }
 }
