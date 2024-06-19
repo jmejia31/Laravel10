@@ -20,16 +20,10 @@
                 </a>
                 <div class="collapse show" id="laravel-examples">
                     <ul class="nav pl-4">
-                        {{--  <li @if ($pageSlug == 'profile') class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{ _('User Profile') }}</p>
-                            </a>
-                        </li>  --}}
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('users.view')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('View Users') }}</p>
+                                <p>{{ _('Users View') }}</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'users') class="active " @endif>
@@ -41,7 +35,7 @@
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('users.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ _('Index ') }}</p>
+                                <p>{{ _('manage Users or user management') }}</p>
                             </a>
                         </li>
                     </ul>

@@ -93,7 +93,6 @@
                             </div>
                             {{--  HASTA AQUI  --}}
                             {{--  Añade esta línea para establecer el estado por defecto a activo  --}}
-                            
 
                             {{--  <div class="input-group{{ $errors->has('state') ? ' has-danger' : '' }}">
                                 <div class="input-group-prepend">

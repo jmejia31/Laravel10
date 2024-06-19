@@ -71,4 +71,35 @@ class UserController extends Controller
         $user->save();
         return back()->with('status', 'User status updated successfully');
     }
+
+    public function edit(User $user)
+    {
+        $roles = Role::pluck('name','name')->all();
+        return view('users.edit',[
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+    ]);
+
+    // Actualizar el usuario con los nuevos datos
+    $user->update([
+        'name' => $request->name,
+        'last_name' => $request->last_name,
+        'email' => $request->email,
+    ]);
+
+    // Redirigir al usuario con un mensaje de éxito
+    return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+}
+
+
 }

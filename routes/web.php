@@ -28,16 +28,26 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
 });
 
-// MODULO DE USERS AND PROFILE
+
 Route::group(['middleware' => 'auth'], function () {
+    // ESTAS SON LAS RUTAS DEL MODULO DE USERS
     Route::resource('users', UserController::class);
     Route::get('users/view', [UserController::class, 'show'])->name('users.view');
+    // Ruta para mostrar el formulario de edición de un usuario específico
+    Route::put('user/{user}', [UserController::class, 'update'])->name('user.update');
+
+
     //Route::get('perfil', ['as' => 'profile.index', 'uses' => 'App\Http\Controllers\ProfileController@index']);
     // Route::resource('profile', ProfileController::class);
+});
+
+// ESTAS SON LAS RUTAS DEL MODULO DE PROFILE
+Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
+
 
 //ESTAS SON LAS RUTAS DE ROLES
 Route::group(['middleware' => 'auth'], function () {
