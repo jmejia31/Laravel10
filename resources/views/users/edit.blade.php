@@ -57,7 +57,36 @@
                                 <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ _('Email') }}" value="{{ $user->email ?? old('email') }}">
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
-                            
+                            {{--  Campo de ROLES  --}}
+                            <div class="input-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </div>
+                                </div>
+                                <select name="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}">
+                                    <option value="" disabled>Seleccione un rol</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role }}" {{ old('role', $user->getRoleNames()->first()) == $role ? 'selected' : '' }}>{{ $role }}</option>
+                                    @endforeach
+                                </select>
+                                @include('alerts.feedback', ['field' => 'role'])
+                            </div>
+                            {{--  Añade esta línea para establecer el estado por defecto a activo  --}}
+
+                            {{--  <div class="input-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tim-icons icon-shape-star"></i> <!-- Cambia el ícono según necesites -->
+                                    </div>
+                                </div>
+                                <select name="state" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" onchange="this.form.submit()">
+                                    <option value="" disabled>Estado del usuario</option>
+                                    <option value="Activo" {{ $user->state == 'Activo' ? 'selected' : '' }}>Activar</option>
+                                    <option value="Inactivo" {{ $user->state == 'Inactivo' ? 'selected' : '' }}>Inactivar</option>
+                                </select>
+                                @include('alerts.feedback', ['field' => 'state'])
+                            </div>  --}}
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ _('Update') }}</button>

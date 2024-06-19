@@ -82,24 +82,29 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user)
-{
-    // Validar los datos del formulario
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-    ]);
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'role' => 'required|string|exists:roles,name', // Asegúrate de que el rol exista
+        ]);
 
-    // Actualizar el usuario con los nuevos datos
-    $user->update([
-        'name' => $request->name,
-        'last_name' => $request->last_name,
-        'email' => $request->email,
-    ]);
+        // Actualizar el usuario con los nuevos datos
+        $user->update([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+        ]);
 
-    // Redirigir al usuario con un mensaje de éxito
-    return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
-}
+        // Actualizar el rol del usuario
+        if ($request->role !== $user->getRoleNames()->first()) {
+            $user->syncRoles($request->role);
+        }
 
+        // Redirigir al usuario con un mensaje de éxito
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+    }
 
 }
