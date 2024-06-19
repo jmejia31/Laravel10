@@ -74,7 +74,7 @@
             <li>
                 <a data-toggle="collapse" href="#mantenimientos" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
                     <i class="fab fa-laravel"></i>
-                    <span class="nav-link-text">{{ __('MANTENIMIENTOS') }}</span>
+                    <span class="nav-link-text">{{ __('Maintenance') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse {{ (request()->is('role/*')) ? 'show' : '' }}" id="mantenimientos">
