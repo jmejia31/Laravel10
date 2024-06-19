@@ -42,9 +42,85 @@
                 </div>
             </li>
 
+
+            {{--  =============================  --}}
+
+            <!-- MODULO DE Roles y Permissions -->
+
+            {{--  ADMIN ROLES  --}}
+            <li>
+                <a data-toggle="collapse" href="#Roles_and_Permissions" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
+                    <i class="fab fa-laravel"></i>
+                    <span class="nav-link-text">{{ __('Roles and Permissions') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse {{ (request()->is('role/*')) ? 'show' : '' }}" id="Roles_and_Permissions">
+                    <ul class="nav pl-4">
+                        <!-- Subcategoría "Roles" -->
+                        <li>
+                            <a data-toggle="collapse" href="#subcategoria-roles" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
+                                <i class="fab fa-laravel"></i>
+                                <span class="nav-link-text">{{ __('Roles') }}</span>
+                                <b class="caret mt-1"></b>
+                            </a>
+                            <div class="collapse {{ (request()->is('role/*')) ? 'show' : '' }}" id="subcategoria-roles">
+                                <ul class="nav pl-4">
+                                    <!-- Elemento de "Roles" -->
+                                    <li @if ($pageSlug == 'role') class="active " @endif>
+                                        <a href="{{ route('role.view') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Role View') }}</p>
+                                        </a>
+                                    </li>
+                                    <li @if ($pageSlug == 'role') class="active " @endif>
+                                        <a href="{{ route('role.create') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Role Create') }}</p>
+                                        </a>
+                                    </li>
+                                    <li @if ($pageSlug == 'role') class="active " @endif>
+                                        <a href="{{ route('role.index') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Role Manager') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Subcategoría "Permissions" -->
+                        <li>
+                            <a data-toggle="collapse" href="#subcategoria-permissions" aria-expanded="{{ (request()->is('permission/*')) ? 'true' : 'false' }}">
+                                <i class="fab fa-laravel"></i>
+                                <span class="nav-link-text">{{ __('Permissions') }}</span>
+                                <b class="caret mt-1"></b>
+                            </a>
+                            <div class="collapse {{ (request()->is('permission/*')) ? 'show' : '' }}" id="subcategoria-permissions">
+                                <ul class="nav pl-4">
+                                    <!-- Elemento de "Permissions" -->
+                                    <li @if ($pageSlug == 'permission') class="active " @endif>
+                                        <a href="{{ route('permissions.index') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Permission Manager') }}</p>
+                                        </a>
+                                    </li>
+                                    <li @if ($pageSlug == 'permission') class="active " @endif>
+                                        <a href="{{ route('permissions.create') }}">
+                                            <i class="tim-icons icon-single-02"></i>
+                                            <p>{{ _('Permission Create') }}</p>
+                                        </a>
+                                    </li>
+                                    <!-- Agrega más elementos de "Permissions" aquí si es necesario -->
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
             {{--  Modulo de ROLES Y PERMISSIONS  --}}
 
-            <li>
+            {{--  <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="{{ (request()->is('role/*') || request()->is('permissions/*')) ? 'true' : 'false' }}">
                     <i class="fab fa-laravel"></i>
                     <span class="nav-link-text">{{ __('ROLES Y PERMISSIONS') }}</span>
@@ -66,72 +142,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-
-            <!-- MODULO DE MANTENIMIENTOS -->
-
-            {{--  ADMIN ROLES  --}}
-            <li>
-                <a data-toggle="collapse" href="#mantenimientos" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
-                    <i class="fab fa-laravel"></i>
-                    <span class="nav-link-text">{{ __('Maintenance') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse {{ (request()->is('role/*')) ? 'show' : '' }}" id="mantenimientos">
-                    <ul class="nav pl-4">
-                        <!-- Aquí es donde agregas tu subcategoría -->
-                        <li>
-                            <a data-toggle="collapse" href="#subcategoria" aria-expanded="{{ (request()->is('role/*')) ? 'true' : 'false' }}">
-                                <i class="fab fa-laravel"></i>
-                                <span class="nav-link-text">{{ __('Roles') }}</span>
-                                <b class="caret mt-1"></b>
-                            </a>
-                            <div class="collapse {{ (request()->is('role/*')) ? 'show' : '' }}" id="subcategoria">
-                                <ul class="nav pl-4">
-                                    <!-- Aquí es donde agregas tus elementos -->
-                                    <li @if ($pageSlug == 'role') class="active " @endif>
-                                        <a href="{{ route('role.create') }}">
-                                            <i class="tim-icons icon-single-02"></i>
-                                            <p>{{ _('Create Role') }}</p>
-                                        </a>
-                                    </li>
-                                    <li @if ($pageSlug == 'role') class="active " @endif>
-                                        <a href="{{ route('role.index') }}">
-                                            <i class="tim-icons icon-bullet-list-67"></i>
-                                            <p>{{ _('Edit Role') }}</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- Aquí es donde agregas tu subcategoría -->
-                        <li>
-                            <a data-toggle="collapse" href="#subcategoria" aria-expanded="{{ (request()->is('permission/*')) ? 'true' : 'false' }}">
-                                <i class="fab fa-laravel"></i>
-                                <span class="nav-link-text">{{ __('Permissions') }}</span>
-                                <b class="caret mt-1"></b>
-                            </a>
-                            <div class="collapse {{ (request()->is('permission/*')) ? 'show' : '' }}" id="subcategoria">
-                                <ul class="nav pl-4">
-                                    <!-- Aquí es donde agregas tus elementos -->
-                                    <li @if ($pageSlug == 'permission') class="active " @endif>
-                                        <a href="{{ route('permissions.create') }}">
-                                            <i class="tim-icons icon-single-02"></i>
-                                            <p>{{ _('Create Permission') }}</p>
-                                        </a>
-                                    </li>
-                                    <li @if ($pageSlug == 'permission') class="active " @endif>
-                                        <a href="{{ route('permissions.index') }}">
-                                            <i class="tim-icons icon-bullet-list-67"></i>
-                                            <p>{{ _('Permissions Manager') }}</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            </li>  --}}
 
             {{--  <li @if ($pageSlug == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">

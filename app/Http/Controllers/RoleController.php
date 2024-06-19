@@ -19,6 +19,12 @@ class roleController extends Controller
         ]);
     }
 
+    public function show()
+    {
+        $roles = Role::all();
+        return view('role.view', compact('roles'));
+    }
+
     public function create()
     {
         return view('role.create');
@@ -38,11 +44,6 @@ class roleController extends Controller
         ]);
 
         return redirect('role/create')->with('status', 'role Created Successfully');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit(role $role)

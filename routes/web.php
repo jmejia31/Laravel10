@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 //ESTAS SON LAS RUTAS DE ROLES
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('role', RoleController::class);
+    Route::get('role/view', [RoleController::class, 'show'])->name('role.view');
     Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
     Route::get('role/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('role/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
