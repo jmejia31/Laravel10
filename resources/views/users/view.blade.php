@@ -39,13 +39,6 @@
                                     <td class="text-center">{{ $user->last_name }}</td>
                                     <td class="text-center">{{ $user->email }}</td>
                                     <td class="text-center">{{ $user->state }}</td>
-                                    {{--  <td class="text-center">
-                                        <a href="{{ url('users/'.$user->id.'/give-permissions') }}" class="btn btn-fill btn-primary" >
-                                            Add / Edit Role Permission
-                                        </a>
-                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-fill btn-primary" >Edit</a>
-                                        <a href="{{ url('users/'.$user->id.'/delete') }}" class="btn btn-fill btn-primary">Delete</a>
-                                    </td>  --}}
                                 </tr>
                                 @endforeach
                             </tbody>

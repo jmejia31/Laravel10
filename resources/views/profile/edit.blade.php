@@ -44,7 +44,7 @@
                                 <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ _('Email') }}" value="{{ old('email', $user->email) }}">
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
-                            
+
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>

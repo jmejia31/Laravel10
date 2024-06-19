@@ -34,5 +34,4 @@ class LoginController extends Controller
             'email' => 'The credentials provided do not match our records or the account is inactive.',
         ]);
     }
-
 }
