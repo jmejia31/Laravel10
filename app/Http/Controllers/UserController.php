@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view user', ['only' => ['show']]);
+        $this->middleware('permission:index user', ['only' => ['index']]);
+        $this->middleware('permission:update user', ['only' => ['update','edit']]);
+        $this->middleware('permission:create user', ['only' => ['create','store']]);
+        $this->middleware('permission:delete user', ['only' => ['destroy']]);
+        $this->middleware('permission:toggleUserStatus user', ['only' => ['toggleUserStatus']]);
+    }
+
     public function index()
     {
         $users = User::with('roles')->get();
@@ -45,9 +55,6 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'max:20'],
             // esta funcion es para SELECCION DE ROLES UNICA
             'role' => ['required', 'string', 'exists:roles,name'],
-            // Esta funcion es para una SELECCION MULTIPLE DE ROLES
-            // 'roles' => ['required', 'array'],
-            // 'roles.*' => ['required', 'string', 'exists:roles,name'],
             ]);
             $user = User::create([
                 'name' => $request->name,
@@ -57,14 +64,9 @@ class UserController extends Controller
             ]);
             // esta funcion es para SELECCION DE ROLES UNICA
             $user->syncRoles([$request->role]);
-
-            // Esta funcion es para una SELECCION MULTIPLE DE ROLES
-            // $user->syncRoles($request->roles);
-            // return redirect('/users')->with('status', 'User Created Successfully with roles');
             return redirect()->route('users.view')->with('status', 'User Created Successfully with roles');
         }
 
-    // En tu UserController ESTADO ACTIVO E INACTIVO
     // Añade esta FUNVION para establecer el estado por defecto a activo
     public function toggleUserStatus(User $user)
     {
