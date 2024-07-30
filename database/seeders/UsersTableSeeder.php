@@ -10,16 +10,11 @@ use Spatie\Permission\Models\Permission; // Asegúrate de que esta línea esté 
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         // Asegúrate de que todos los permisos estén creados aquí
         // Puedes crear permisos individuales o en masa, por ejemplo:
-        // Permission::create(['name' => 'edit articles']);
+        Permission::create(['name' => 'edit articles', 'ngshnsdbnadhgf']);
         // ... crear otros permisos
 
         // Crear roles y asignar todos los permisos existentes

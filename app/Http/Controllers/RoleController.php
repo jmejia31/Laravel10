@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Route;
+
 
 class roleController extends Controller
 {
@@ -13,13 +15,14 @@ class roleController extends Controller
     {
         $this->middleware('permission:view role', ['only' => ['show']]);
         $this->middleware('permission:index role', ['only' => ['index']]);
-        $this->middleware('permission:update role', ['only' => ['update','edit']]);
-        $this->middleware('permission:create role', ['only' => ['create','store']]);
+        $this->middleware('permission:update role', ['only' => ['update','edit']]);  //addPermissionToRole =ES PARA AGREGAR PERMISSIONS A LA FUNTION
+        $this->middleware('permission:create role', ['only' => ['create','store','addPermissionToRole','givePermissionToRole']]); //givePermissionToRole = PARA dar permiso para el rol
         $this->middleware('permission:delete role', ['only' => ['destroy']]);
-        $this->middleware('permission:addPermissionToRole role', ['only' => ['addPermissionToRole']]);
-        $this->middleware('permission:givePermissionToRole role', ['only' => ['givePermissionToRole']]);
-        // addPermissionToRole
+        // $this->middleware('permission:addPermissionToRole role', ['only' => ['addPermissionToRole']]);
+        // $this->middleware('permission:givePermissionToRole role', ['only' => ['givePermissionToRole']]);
     }
+
+    // ----------========================================================================
 
     public function index()
     {
@@ -30,16 +33,22 @@ class roleController extends Controller
         ]);
     }
 
+        // ----------========================================================================
+
     public function show()
     {
         $roles = Role::all();
         return view('role.view', compact('roles'));
     }
 
+        // ----------========================================================================
+
     public function create()
     {
         return view('role.create');
     }
+
+        // ----------========================================================================
 
     public function store(Request $request)
     {
@@ -48,14 +57,34 @@ class roleController extends Controller
                 'required',
                 'string',
                 'unique:roles,name'
+            ], [
+                'name.unique' => 'Este Rol ya existe.'
             ]
         ]);
-        $role = Role::create([
-            'name' => $request->name
+
+        try {$role = Role::create([
+            'name' => $request->name,
         ]);
 
+        $this->addToRouteGroup($role); // Llamar función para agregar al grupo de rutas
+
         return redirect('role/create')->with('status', 'role Created Successfully');
+        // $this->addToRouteGroup($role); // Llamar función para agregar al grupo de rutas
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Error inesperado: ' . $e->getMessage()]);
+        }
+        }
+
+        protected function addToRouteGroup($role)
+        {
+        $roleName = strtolower($role->name);
+
+        Route::group(['middleware' => ['auth', "role:$roleName"]], function () {
+            // Aquí puedes definir las rutas específicas para este nuevo rol si lo deseas
+        });
     }
+
+        // ----------========================================================================
 
     public function edit(role $role)
     {
@@ -63,6 +92,8 @@ class roleController extends Controller
             'role' => $role
         ]);
     }
+
+        // ----------========================================================================
 
     public function update(Request $request, role $role)
     {
@@ -81,6 +112,8 @@ class roleController extends Controller
         return redirect('role')->with('status', 'role Updated Successfully');
     }
 
+        // ----------========================================================================
+
     public function destroy($roleId)
     {
         //dd($id);
@@ -88,6 +121,8 @@ class roleController extends Controller
         $role->delete();
         return redirect('role')->with('status', 'role Deleted Successfully');
     }
+
+        // ----------========================================================================
 
     public function addPermissionToRole($roleId)
     {
@@ -104,6 +139,8 @@ class roleController extends Controller
             'rolePermissions' => $rolePermissions
         ]);
     }
+
+        // ----------========================================================================
 
     public function givePermissionToRole(Request $request, $roleId)
     {

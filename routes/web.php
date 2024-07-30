@@ -29,13 +29,16 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // ESTAS SON LAS RUTAS DEL MODULO DE USERS
-Route::group(['middleware' => ['auth','role:Administrator|Advanced User|User']], function () {
+
+//Route::group(['middleware' => ['auth','role:Administrator|Advanced User|User']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
     Route::get('users/view', [UserController::class, 'show'])->name('users.view');
     Route::put('user/{user}', [UserController::class, 'update'])->name('user.update');
     Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
     // ->middleware('permission:delete role');
 });
+
 
 // ESTAS SON LAS RUTAS DEL MODULO DE PROFILE
 Route::group(['middleware' => 'auth'], function () {
@@ -46,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 //ESTAS SON LAS RUTAS DE ROLES
-Route::group(['middleware' => ['auth','role:Administrator|Advanced User|User']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('role', RoleController::class);
     Route::get('role/view', [RoleController::class, 'show'])->name('role.view');
     Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
@@ -56,7 +59,7 @@ Route::group(['middleware' => ['auth','role:Administrator|Advanced User|User']],
 });
 
 //ESTAS SON LAS RUTAS DE PERMISSIONS
-Route::group(['middleware' => ['auth','role:Administrator|Advanced User|User']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/view', [PermissionController::class, 'show'])->name('permissions.view');
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
